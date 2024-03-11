@@ -1,0 +1,49 @@
+﻿<Window x:Class="JobHunter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JobHunter"
+        mc:Ignorable="d" 
+        WindowState="Maximized"      
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <DataTemplate x:Key="GoToSite">
+            <Button Content="Смотреть" Click="Button_Click" Tag="{Binding Id}"/>
+
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal"> 
+            <Button Content="Очистить" Click="Button_Click_1"/>
+            <Button Content="Старт" Click="Button_Start"/> 
+            <CheckBox x:Name="browserVisibilityCheckbox" IsChecked="True" Content="невидимый"/>
+        </StackPanel>
+        <DataGrid x:Name="adsDataGrid" d:ItemsSource="{d:SampleData ItemCount=5}" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="" Binding="{Binding Id}" DisplayIndex="0"/>
+                <DataGridTextColumn Header="" Binding="{Binding Title}" DisplayIndex="1"/>
+                <DataGridTextColumn Header="" Binding="{Binding DateTime}" DisplayIndex="2"/>
+                <DataGridTemplateColumn Header="" DisplayIndex="3" CellTemplate="{StaticResource GoToSite}"/>
+                <DataGridTextColumn Header="Компания" Binding="{Binding Company}" DisplayIndex="4"/>
+                <DataGridTextColumn Binding="{Binding SalaryString}" DisplayIndex="5"/>
+                <DataGridTextColumn Binding="{Binding MinSalary}" DisplayIndex="6"/>
+                <DataGridTextColumn Binding="{Binding MaxSalary}" DisplayIndex="7"/>
+                
+                    
+                
+
+
+                <!--<DataGridTextColumn Header="" Binding="{Binding Title}" DisplayIndex="0"/>-->
+            </DataGrid.Columns>
+        </DataGrid> 
+
+    </Grid>
+</Window>
